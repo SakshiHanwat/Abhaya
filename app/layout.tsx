@@ -23,7 +23,7 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'SafeHer - Your Shield. Your Journey.',
+  title: 'Abhaya - Your Shield. Your Journey.',
   description: 'A women\'s safety app inspired by sacred Indian Mandala art. Your protection, your power.',
   generator: 'v0.app',
   icons: {

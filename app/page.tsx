@@ -44,7 +44,7 @@ function FloatingParticles() {
 }
 
 // Inner app — MUST be inside ThemeProvider to use useTheme
-function SafeHerApp() {
+function AbhayaApp() {
   const { colors } = useTheme() // ✅ theme se live colors
 
   const [isLoading, setIsLoading] = useState(true)
@@ -159,7 +159,7 @@ export default function Page() {
   return (
     <ThemeProvider>
       <LanguageProvider>
-        <SafeHerApp />
+        <AbhayaApp />
       </LanguageProvider>
     </ThemeProvider>
   )

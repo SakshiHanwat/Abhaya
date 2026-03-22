@@ -758,7 +758,7 @@ export function HomeScreen({ onLogout, onNavigate, onRouteSelect }: HomeScreenPr
 
       {/* Header */}
       <motion.div className="flex items-center justify-between px-4 py-4" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-2xl font-serif flex-shrink-0" style={{ color: colors.accent, fontFamily: 'var(--font-playfair)' }}>SafeHer</h1>
+        <h1 className="text-2xl font-serif flex-shrink-0" style={{ color: colors.accent, fontFamily: 'var(--font-playfair)' }}>Abhaya</h1>
         <div className="flex items-center gap-1.5 flex-shrink-0">
           <motion.button onClick={() => setShowLanguageSwitcher(true)} className="p-2 rounded-full border flex-shrink-0"
             style={{ borderColor: `${colors.accent}40` }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

@@ -166,7 +166,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   // Load saved theme
   useEffect(() => {
-    const saved = localStorage.getItem('safeher-theme') as ThemeId
+    const saved = localStorage.getItem('Abhaya-theme') as ThemeId
     if (saved && THEMES[saved]) setThemeId(saved)
   }, [])
 
@@ -182,7 +182,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     // Update body background
     document.body.style.backgroundColor = theme.colors.background
     document.body.style.color = theme.colors.foreground
-    localStorage.setItem('safeher-theme', themeId)
+    localStorage.setItem('Abhaya-theme', themeId)
   }, [themeId])
 
   const theme = THEMES[themeId]

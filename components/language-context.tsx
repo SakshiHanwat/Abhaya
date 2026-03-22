@@ -77,7 +77,7 @@ type TranslationKey =
 
 const translations: Record<Language, Record<TranslationKey, string>> = {
   hi: {
-    appName: "SafeHer",
+    appName: "Abhaya",
     safe: "सुरक्षित",
     sosTagline: "एक स्पर्श — सुरक्षा",
     sending: "भेज रहे हैं...",
@@ -130,7 +130,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     deviName: "देवी AI - आपकी सुरक्षा साथी",
   },
   en: {
-    appName: "SafeHer",
+    appName: "Abhaya",
     safe: "Safe",
     sosTagline: "One Touch — Safety",
     sending: "Sending...",
@@ -183,7 +183,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     deviName: "Devi AI - Your Safety Companion",
   },
   ta: {
-    appName: "SafeHer",
+    appName: "Abhaya",
     safe: "பாதுகாப்பு",
     sosTagline: "ஒரு தொடுதல் — பாதுகாப்பு",
     sending: "அனுப்புகிறது...",
@@ -236,7 +236,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     deviName: "தேவி AI - உங்கள் பாதுகாப்பு துணை",
   },
   te: {
-    appName: "SafeHer",
+    appName: "Abhaya",
     safe: "సురక్షితం",
     sosTagline: "ఒక స్పర్శ — భద్రత",
     sending: "పంపుతోంది...",
@@ -289,7 +289,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     deviName: "దేవి AI - మీ భద్రతా సహచరి",
   },
   bn: {
-    appName: "SafeHer",
+    appName: "Abhaya",
     safe: "নিরাপদ",
     sosTagline: "এক স্পর্শ — সুরক্ষা",
     sending: "পাঠানো হচ্ছে...",
@@ -342,7 +342,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     deviName: "দেবী AI - আপনার সুরক্ষা সঙ্গী",
   },
   mr: {
-    appName: "SafeHer",
+    appName: "Abhaya",
     safe: "सुरक्षित",
     sosTagline: "एक स्पर्श — सुरक्षा",
     sending: "पाठवत आहे...",
@@ -395,7 +395,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     deviName: "देवी AI - तुमची सुरक्षा साथी",
   },
   gu: {
-    appName: "SafeHer",
+    appName: "Abhaya",
     safe: "સુરક્ષિત",
     sosTagline: "એક સ્પર્શ — સુરક્ષા",
     sending: "મોકલી રહ્યા છીએ...",
@@ -448,7 +448,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     deviName: "દેવી AI - તમારી સુરક્ષા સાથી",
   },
   kn: {
-    appName: "SafeHer",
+    appName: "Abhaya",
     safe: "ಸುರಕ್ಷಿತ",
     sosTagline: "ಒಂದು ಸ್ಪರ್ಶ — ಸುರಕ್ಷತೆ",
     sending: "ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ...",
