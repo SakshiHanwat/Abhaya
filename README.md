@@ -24,11 +24,11 @@
 
 | Home — SOS + Routes | Live Tracking Map |
 |---|---|
-| ![Home](./screenshot-home.png) | ![Track](./screenshot-track.png) |
+| ![Home](./screenshots-home.png) | ![Track](./screenshots-map.png) |
 
 | Devi AI Chatbot | Safety Screen |
 |---|---|
-| ![Devi](./screenshot-devi.png) | ![Safety](./screenshot-safety.png) |
+| ![Devi](./screenshots-Deviai.png) | ![Safety](./screenshots-route.png) |
 
 ---
 
