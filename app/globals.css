@@ -1,0 +1,345 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Mocha Rose Color Palette */
+  --background: #faf5f0;
+  --foreground: #4a2c2a;
+  --card: #ffffff;
+  --card-foreground: #4a2c2a;
+  --popover: #ffffff;
+  --popover-foreground: #4a2c2a;
+  --primary: #4a2c2a;
+  --primary-foreground: #ffffff;
+  --secondary: #b5836a;
+  --secondary-foreground: #ffffff;
+  --muted: #f5ede8;
+  --muted-foreground: #7a5c5a;
+  --accent: #c9933a;
+  --accent-foreground: #ffffff;
+  --destructive: #b5836a;
+  --destructive-foreground: #ffffff;
+  --border: #e5d8cc;
+  --input: #faf5f0;
+  --ring: #4a2c2a;
+  --chart-1: #c9933a;
+  --chart-2: #b5836a;
+  --chart-3: #4a2c2a;
+  --chart-4: #4caf50;
+  --chart-5: #4a2c2a;
+  --radius: 0.75rem;
+  
+  /* Theme CSS Variables - Mocha Rose */
+  --theme-background: #faf5f0;
+  --theme-foreground: #4a2c2a;
+  --theme-card: #ffffff;
+  --theme-primary: #4a2c2a;
+  --theme-secondary: #b5836a;
+  --theme-accent: #c9933a;
+  --theme-gold: #c9933a;
+  --theme-magenta: #b5836a;
+  --theme-cream: #faf5f0;
+  
+  /* Mocha Rose Custom Colors */
+  --gold: #c9933a;
+  --magenta: #b5836a;
+  --saffron: #c9933a;
+  --safe-green: #4caf50;
+  --cream: #faf5f0;
+  --mocha: #4a2c2a;
+  --card-bg: #ffffff;
+  
+  --sidebar: #ffffff;
+  --sidebar-foreground: #4a2c2a;
+  --sidebar-primary: #4a2c2a;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f5ede8;
+  --sidebar-accent-foreground: #4a2c2a;
+  --sidebar-border: #e5d8cc;
+  --sidebar-ring: #4a2c2a;
+}
+
+@theme inline {
+  --font-sans: 'Poppins', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-display: 'Cinzel', serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  
+  /* Custom Colors */
+  --color-gold: var(--gold);
+  --color-magenta: var(--magenta);
+  --color-saffron: var(--saffron);
+  --color-safe-green: var(--safe-green);
+  --color-cream: var(--cream);
+  --color-navy: var(--navy);
+  --color-card-bg: var(--card-bg);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom Animations */
+@keyframes mandala-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes mandala-rotate-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+/* Mocha Rose Animations */
+@keyframes card-hover-lift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-2px); }
+}
+
+@keyframes warm-shadow-appear {
+  0% { box-shadow: none; }
+  100% { box-shadow: 0 4px 12px rgba(74, 44, 42, 0.1); }
+}
+
+@keyframes button-press {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.97); }
+  100% { transform: scale(1); }
+}
+
+@keyframes warm-glow-pulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(201, 147, 58, 0.3); }
+  50% { box-shadow: 0 0 25px rgba(201, 147, 58, 0.5); }
+}
+
+@keyframes spring-bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes fill-ring {
+  from { stroke-dashoffset: 440; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes slide-left {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes input-focus-glow {
+  0% { border-color: #e5d8cc; box-shadow: none; }
+  100% { border-color: #4a2c2a; box-shadow: 0 0 10px rgba(201, 147, 58, 0.2); }
+}
+
+@keyframes lotus-bloom {
+  0% { transform: scale(0) rotate(0deg); opacity: 0; }
+  50% { transform: scale(0.5) rotate(180deg); opacity: 0.5; }
+  100% { transform: scale(1) rotate(360deg); opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes particle-float {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(212, 160, 23, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(212, 160, 23, 0.8); }
+}
+
+@keyframes fill-bar {
+  from { width: 0%; }
+  to { width: var(--fill-width); }
+}
+
+.animate-mandala-rotate {
+  animation: mandala-rotate 60s linear infinite;
+}
+
+.animate-mandala-rotate-reverse {
+  animation: mandala-rotate-reverse 60s linear infinite;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-breathe {
+  animation: breathe 3s ease-in-out infinite;
+}
+
+.animate-lotus-bloom {
+  animation: lotus-bloom 2.5s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease-out forwards;
+}
+
+.animate-particle-float {
+  animation: particle-float 8s linear infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Mocha Rose Text Gradient */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #c9933a 0%, #d4a555 50%, #c9933a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Mocha Rose Gradient Button */
+.bg-saffron-gold-gradient {
+  background: linear-gradient(135deg, #4a2c2a 0%, #b5836a 100%);
+}
+
+/* Rose Gold Gradient */
+.bg-magenta-gradient {
+  background: linear-gradient(135deg, #b5836a 0%, #c9933a 100%);
+}
+
+/* Warm Glow */
+.gold-glow {
+  box-shadow: 0 0 20px rgba(201, 147, 58, 0.3);
+}
+
+.gold-glow-strong {
+  box-shadow: 0 0 30px rgba(201, 147, 58, 0.5);
+}
+
+/* Card with warm border */
+.card-mandala {
+  background: #ffffff;
+  border: 1px solid rgba(229, 216, 204, 0.6);
+  box-shadow: 0 2px 8px rgba(74, 44, 42, 0.08);
+}
+
+/* Staggered animation delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-800 { animation-delay: 0.8s; }
+
+/* Glassmorphism Card Styles */
+.glass-card {
+  background: rgba(15, 16, 53, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 160, 23, 0.2);
+  box-shadow: 0 8px 32px rgba(212, 160, 23, 0.1);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: rgba(15, 16, 53, 0.7);
+  border-color: rgba(212, 160, 23, 0.4);
+  box-shadow: 0 8px 32px rgba(212, 160, 23, 0.2);
+  transform: translateY(-2px);
+}
+
+.glass-card-rose {
+  background: rgba(250, 246, 241, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 160, 23, 0.2);
+  box-shadow: 0 8px 32px rgba(212, 160, 23, 0.1);
+}
+
+.glass-card-rose:hover {
+  background: rgba(250, 246, 241, 0.7);
+  border-color: rgba(212, 160, 23, 0.4);
+  box-shadow: 0 8px 32px rgba(212, 160, 23, 0.2);
+}
+
+.glass-card-sage {
+  background: rgba(34, 51, 40, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 160, 23, 0.2);
+  box-shadow: 0 8px 32px rgba(212, 160, 23, 0.1);
+}
+
+.glass-card-sage:hover {
+  background: rgba(34, 51, 40, 0.7);
+  border-color: rgba(212, 160, 23, 0.4);
+  box-shadow: 0 8px 32px rgba(212, 160, 23, 0.2);
+}
