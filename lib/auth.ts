@@ -5,11 +5,14 @@ export async function sendOTP(email: string) {
   const { error } = await supabase.auth.signInWithOtp({
     email,
     options: {
-      shouldCreateUser: true,
-      emailRedirectTo: undefined,
+      shouldCreateUser: true
     }
   })
-  if (error) return { success: false, error: error.message }
+
+  if (error) {
+    return { success: false, error: error.message }
+  }
+
   return { success: true }
 }
 
@@ -20,41 +23,77 @@ export async function verifyOTP(email: string, otp: string) {
     token: otp,
     type: 'email'
   })
-  if (error) return { success: false, error: error.message }
+
+  if (error) {
+    return { success: false, error: error.message }
+  }
+
   return { success: true, user: data.user }
 }
 
 // Save profile
 export async function saveProfile(name: string, phone: string) {
   const user = await getUser()
-  if (!user) return { success: false }
+
+  if (!user) {
+    return { success: false, error: 'User not logged in' }
+  }
+
   const { error } = await supabase.from('profiles').upsert({
     id: user.id,
     name,
     phone
   })
-  return { success: !error }
+
+  if (error) {
+    return { success: false, error: error.message }
+  }
+
+  return { success: true }
 }
 
 // Sign out
 export async function signOut() {
-  await supabase.auth.signOut()
+  const { error } = await supabase.auth.signOut()
+
+  if (error) {
+    return { success: false, error: error.message }
+  }
+
+  return { success: true }
 }
 
 // Get current user
 export async function getUser() {
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user },
+    error
+  } = await supabase.auth.getUser()
+
+  if (error) {
+    return null
+  }
+
   return user
 }
 
 // Get contacts
 export async function getContacts() {
   const user = await getUser()
-  if (!user) return []
-  const { data } = await supabase
+
+  if (!user) {
+    return []
+  }
+
+  const { data, error } = await supabase
     .from('contacts')
     .select('*')
     .eq('user_id', user.id)
+
+  if (error) {
+    return []
+  }
+
   return data || []
 }
 
@@ -65,42 +104,55 @@ export async function addContact(
   relation: string
 ) {
   const user = await getUser()
-  if (!user) return { success: false }
+
+  if (!user) {
+    return { success: false, error: 'User not logged in' }
+  }
+
   const { error } = await supabase.from('contacts').insert({
     user_id: user.id,
     name,
     phone,
     relation
   })
-  return { success: !error }
+
+  if (error) {
+    return { success: false, error: error.message }
+  }
+
+  return { success: true }
 }
 
 // Save SOS + Send SMS to contacts
 export async function saveSOS(lat: number, lng: number) {
   const user = await getUser()
 
-  if (user) {
-    // Database mein save karo
-    await supabase.from('sos_alerts').insert({
-      user_id: user.id,
-      latitude: lat,
-      longitude: lng,
-      message: 'EMERGENCY! I need help!'
-    })
+  if (!user) {
+    return { success: false, error: 'User not logged in' }
+  }
 
-    // Contacts fetch karo
-    const contacts = await getContacts()
-    const phones = contacts
-      .map((c: any) => c.phone)
-      .filter(Boolean)
+  const { error: sosError } = await supabase.from('sos_alerts').insert({
+    user_id: user.id,
+    latitude: lat,
+    longitude: lng,
+    message: 'EMERGENCY! I need help!'
+  })
 
-    if (phones.length > 0) {
-      const locationLink = lat !== 0
-        ? `maps.google.com/?q=${lat},${lng}`
+  if (sosError) {
+    return { success: false, error: sosError.message }
+  }
+
+  const contacts = await getContacts()
+  const phones = contacts.map((c: any) => c.phone).filter(Boolean)
+
+  if (phones.length > 0) {
+    const locationLink =
+      lat !== 0 && lng !== 0
+        ? `https://maps.google.com/?q=${lat},${lng}`
         : 'Location unavailable'
 
-      // SMS bhejo
-      await fetch('/api/sms', {
+    try {
+      const response = await fetch('/api/sms', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -108,8 +160,16 @@ export async function saveSOS(lat: number, lng: number) {
           message: `EMERGENCY ALERT! Madad chahiye! Location: ${locationLink} - Abhaya App`
         })
       })
+
+      if (!response.ok) {
+        return { success: false, error: 'SOS saved but SMS failed to send' }
+      }
+    } catch (err) {
+      return { success: false, error: 'SOS saved but SMS request failed' }
     }
   }
+
+  return { success: true }
 }
 
 // Update live location
@@ -119,14 +179,24 @@ export async function updateLocation(
   isTracking: boolean
 ) {
   const user = await getUser()
-  if (!user) return
-  await supabase.from('locations').upsert({
+
+  if (!user) {
+    return { success: false, error: 'User not logged in' }
+  }
+
+  const { error } = await supabase.from('locations').upsert({
     user_id: user.id,
     latitude: lat,
     longitude: lng,
     is_tracking: isTracking,
     updated_at: new Date().toISOString()
   })
+
+  if (error) {
+    return { success: false, error: error.message }
+  }
+
+  return { success: true }
 }
 
 // Save incident report
@@ -137,7 +207,11 @@ export async function saveIncident(
   description: string = ''
 ) {
   const user = await getUser()
-  if (!user) return { success: false }
+
+  if (!user) {
+    return { success: false, error: 'User not logged in' }
+  }
+
   const { error } = await supabase.from('incidents').insert({
     user_id: user.id,
     type,
@@ -145,12 +219,22 @@ export async function saveIncident(
     longitude: lng,
     description
   })
-  return { success: !error }
+
+  if (error) {
+    return { success: false, error: error.message }
+  }
+
+  return { success: true }
 }
 
 // Get safe spots
 export async function getSafeSpots() {
-  const { data } = await supabase.from('safe_spots').select('*')
+  const { data, error } = await supabase.from('safe_spots').select('*')
+
+  if (error) {
+    return []
+  }
+
   return data || []
 }
 
@@ -162,7 +246,11 @@ export async function addSafeSpot(
   lng: number
 ) {
   const user = await getUser()
-  if (!user) return { success: false }
+
+  if (!user) {
+    return { success: false, error: 'User not logged in' }
+  }
+
   const { error } = await supabase.from('safe_spots').insert({
     name,
     type,
@@ -170,5 +258,10 @@ export async function addSafeSpot(
     longitude: lng,
     added_by: user.id
   })
-  return { success: !error }
+
+  if (error) {
+    return { success: false, error: error.message }
+  }
+
+  return { success: true }
 }
