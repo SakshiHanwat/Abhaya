@@ -54,7 +54,6 @@ export async function getContacts() {
   const { data } = await supabase
     .from('contacts')
     .select('*')
-    .eq('user_id', user.id)
   return data || []
 }
 
