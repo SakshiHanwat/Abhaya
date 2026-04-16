@@ -95,7 +95,7 @@ export function AuthScreen({ onAuthSuccess }: AuthScreenProps) {
           animate={{ opacity: [0.8, 1, 0.8] }}
           transition={{ duration: 3, repeat: Infinity }}
         >
-          Nirbhaya
+          Abhaya
         </motion.h1>
         <p className="text-center font-cinzel text-sm text-[#7a5c5a] mb-8">
           Abhaya — Be Fearless, Be Safe
